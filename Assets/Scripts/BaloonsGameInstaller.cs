@@ -11,7 +11,9 @@ public class BaloonsGameInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<BaloonsSpawner>().AsSingle();
 
         SignalBusInstaller.Install(Container);
+
         Container.DeclareSignal<BaloonExplodedSignal>();
         Container.DeclareSignal<BaloonSpawnedSignal>();
+        Container.DeclareSignal<BaloonFlewAwaySignal>();
     }
 }

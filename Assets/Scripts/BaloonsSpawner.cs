@@ -11,6 +11,8 @@ namespace DefaultNamespace
         public BaloonsSpawner(BaloonFactory factory)
         {
             Factory = factory;
+            
+            Spawn();
         }
         
         public void Tick()
@@ -27,7 +29,14 @@ namespace DefaultNamespace
         public void Spawn()
         {
             Baloon baloon = Factory.Create();
+            baloon.transform.position = GetSpawnPosition();
         }
 
+        public Vector3 GetSpawnPosition()
+        {
+            Vector3 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 0.0f), 0.0f));
+            spawnPosition.z = 0.0f;
+            return spawnPosition;
+        }
     }
 }
