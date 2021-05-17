@@ -3,15 +3,20 @@ using Zenject;
 
 namespace DefaultNamespace
 {
-    public class BaloonsSpawner : ITickable
+    public class BaloonsSpawner : ITickable, IInitializable
     {
         private BaloonFactory Factory;
+        private SignalBus SignalBus;
         private float Timer;
         
-        public BaloonsSpawner(BaloonFactory factory)
+        public BaloonsSpawner(BaloonFactory factory, SignalBus signalBus)
         {
             Factory = factory;
-            
+            SignalBus = signalBus;
+        }
+        
+        public void Initialize()
+        {
             Spawn();
         }
         
@@ -30,6 +35,7 @@ namespace DefaultNamespace
         {
             Baloon baloon = Factory.Create();
             baloon.transform.position = GetSpawnPosition();
+            SignalBus.Fire<BaloonSpawnedSignal>(new BaloonSpawnedSignal(baloon));
         }
 
         public Vector3 GetSpawnPosition()
