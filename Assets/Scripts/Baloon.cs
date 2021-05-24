@@ -20,7 +20,7 @@ public class Baloon : MonoBehaviour
     private void Fly()
     {
         Vector3 position = transform.position;
-        position.y += 3.0f * Time.deltaTime;
+        position.y += 5.0f * Time.deltaTime;
         transform.position = position;
     }
 

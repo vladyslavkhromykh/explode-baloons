@@ -12,10 +12,14 @@ public class BaloonsGameInstaller : MonoInstaller
             .WithGameObjectName("Baloon").UnderTransformGroup("Baloons");
 
         Container.BindInterfacesAndSelfTo<BaloonsSpawner>().AsSingle();
+
+        Container.BindInterfacesAndSelfTo<LoseConditionChecker>().AsSingle();
+        Container.BindInterfacesAndSelfTo<LoseGameProcessor>().AsSingle();
         
 
         Container.DeclareSignal<BaloonExplodedSignal>();
         Container.DeclareSignal<BaloonSpawnedSignal>();
         Container.DeclareSignal<BaloonFlewAwaySignal>();
+        Container.DeclareSignal<LoseGameSignal>();
     }
 }

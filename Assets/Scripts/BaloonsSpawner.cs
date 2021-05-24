@@ -24,7 +24,7 @@ namespace DefaultNamespace
         {
             Timer += Time.deltaTime;
 
-            if (Timer >= 3.0f)
+            if (Timer >= 1.0f)
             {
                 Timer = 0.0f;
                 Spawn();
