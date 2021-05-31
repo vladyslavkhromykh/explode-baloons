@@ -26,6 +26,7 @@ public class LoseConditionChecker : IInitializable, IDisposable
         FlewAwayBaloonsCounter++;
         if (FlewAwayBaloonsCounter >= 5)
         {
+            SignalBus.Fire<SessionEndSignal>();
             SignalBus.Fire<LoseGameSignal>();
         }
     }

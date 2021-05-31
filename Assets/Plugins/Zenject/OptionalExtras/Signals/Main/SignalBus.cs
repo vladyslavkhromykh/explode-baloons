@@ -389,7 +389,7 @@ namespace Zenject
 
             if (declaration == null)
             {
-                throw Assert.CreateException("Tried subscribing to undeclared signal '{0}'!", id.SignalId);
+                throw Assert.CreateException($"Tried subscribing to undeclared signal {id.SignalId}!");
             }
 
             var subscription = _subscriptionPool.Spawn(callback, declaration);
