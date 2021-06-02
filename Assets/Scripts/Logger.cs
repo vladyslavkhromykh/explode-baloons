@@ -37,16 +37,16 @@ public class Logger : IInitializable, IDisposable
 
     private void OnBaloonSpawnedSignal(BaloonSpawnedSignal signal)
     {
-        Debug.Log(nameof(OnBaloonSpawnedSignal));
+        //Debug.Log(nameof(OnBaloonSpawnedSignal));
     }
 
     private void OnBaloonFlewAwaySignal(BaloonFlewAwaySignal signal)
     {
-        Debug.Log(nameof(OnBaloonFlewAwaySignal));
+        //Debug.Log(nameof(OnBaloonFlewAwaySignal));
     }
 
     private void OnBaloonExplodedSignal(BaloonExplodedSignal signal)
     {
-        Debug.Log(nameof(OnBaloonExplodedSignal));
+        //Debug.Log(nameof(OnBaloonExplodedSignal));
     }
 }

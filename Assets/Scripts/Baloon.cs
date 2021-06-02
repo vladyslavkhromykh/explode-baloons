@@ -3,16 +3,19 @@ using Zenject;
 
 public class Baloon : MonoBehaviour
 {
-    public SignalBus SignalBus;
+    private SignalBus SignalBus;
+    private float StartSpeed;
 
     [Inject]
-    public void Construct(SignalBus signalBus)
+    public void Construct(SignalBus signalBus, Settings settings)
     {
         SignalBus = signalBus;
+        StartSpeed = settings.BaloonStartSpeed;
     }
 
     public void Update()
     {
+        Accelerate();
         Fly();
         CheckCameraLimits();
     }
@@ -20,8 +23,18 @@ public class Baloon : MonoBehaviour
     private void Fly()
     {
         Vector3 position = transform.position;
-        position.y += 5.0f * Time.deltaTime;
+        position.y += GetSpeed() * Time.deltaTime;
         transform.position = position;
+    }
+
+    private void Accelerate()
+    {
+        StartSpeed += Time.deltaTime;
+    }
+
+    public float GetSpeed()
+    {
+        return StartSpeed;
     }
 
     private void CheckCameraLimits()

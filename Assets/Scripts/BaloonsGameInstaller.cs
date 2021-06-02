@@ -6,9 +6,7 @@ public class BaloonsGameInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.BindInterfacesAndSelfTo<Logger>().AsSingle();
-        
-        Debug.LogError("BaloonsGameInstaller.InstallBindings");
-        
+
         Container.BindFactory<Baloon, BaloonFactory>().FromComponentInNewPrefabResource("BaloonPrefab")
             .WithGameObjectName("Baloon").UnderTransformGroup("Baloons");
 
@@ -17,8 +15,8 @@ public class BaloonsGameInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<LoseConditionChecker>().AsSingle();
         Container.BindInterfacesAndSelfTo<LoseGameProcessor>().AsSingle();
         
+        Container.Bind<BestRecordHandler>().AsSingle().NonLazy();
         Container.Bind<SessionStarter>().AsSingle();
-        Container.Bind<SessionTimeCounter>().AsSingle();
         
         Container.DeclareSignal<BaloonExplodedSignal>();
         Container.DeclareSignal<BaloonSpawnedSignal>();

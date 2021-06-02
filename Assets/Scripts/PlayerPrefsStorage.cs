@@ -10,6 +10,12 @@ public class PlayerPrefsStorage : IStorage
 
     public TValue Get<TValue>(string key)
     {
-        return JsonConvert.DeserializeObject<TValue>(PlayerPrefs.GetString(key));
+        string json = PlayerPrefs.GetString(key);
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            return default(TValue);
+        }
+        
+        return JsonConvert.DeserializeObject<TValue>(json);
     }
 }

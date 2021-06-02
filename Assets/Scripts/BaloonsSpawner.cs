@@ -32,14 +32,15 @@ public class BaloonsSpawner : ITickable, IInitializable
     public void Spawn()
     {
         Baloon baloon = Factory.Create();
-        baloon.transform.position = GetSpawnPosition();
+        baloon.transform.position = GetSpawnPosition(baloon);
         SignalBus.Fire<BaloonSpawnedSignal>(new BaloonSpawnedSignal(baloon));
     }
 
-    public Vector3 GetSpawnPosition()
+    public Vector3 GetSpawnPosition(Baloon baloon)
     {
         Vector3 spawnPosition =
             Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 0.0f), 0.0f));
+        spawnPosition.y -= baloon.GetSize().y;
         spawnPosition.z = 0.0f;
         return spawnPosition;
     }

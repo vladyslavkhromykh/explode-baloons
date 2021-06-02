@@ -1,13 +1,13 @@
 using UnityEngine;
 using Zenject;
 
-public class SessionTimeCounter
+public class BestRecordHandler
 {
     private IStorage Storage;
     private SignalBus SignalBus;
     private float SessionStartTime;
-
-    public SessionTimeCounter(SignalBus signalBus, IStorage storage)
+    
+    public BestRecordHandler(SignalBus signalBus, IStorage storage)
     {
         SignalBus = signalBus;
         Storage = storage;
@@ -23,7 +23,12 @@ public class SessionTimeCounter
     
     private void OnSessionEndSignal()
     {
-        float SessionLength = Time.time - SessionStartTime;
-        Storage.Save("record", SessionLength);
+        float sessionLength = Time.time - SessionStartTime;
+        float previousRecord = Storage.Get<float>("record");
+        if (sessionLength > previousRecord)
+        {
+            Storage.Save("record", sessionLength);
+        }
+        
     }
 }

@@ -5,10 +5,12 @@ public class LoseConditionChecker : IInitializable, IDisposable
 {
     private SignalBus SignalBus;
     private int FlewAwayBaloonsCounter;
+    private int BaloonsFlewAwayToLoseGame;
     
-    public LoseConditionChecker(SignalBus signalBus)
+    public LoseConditionChecker(SignalBus signalBus, Settings settings)
     {
         SignalBus = signalBus;
+        BaloonsFlewAwayToLoseGame = settings.BaloonsFlewAwayToLoseGame;
     }
     
     public void Initialize()
@@ -24,7 +26,7 @@ public class LoseConditionChecker : IInitializable, IDisposable
     private void OnBaloonFlewAwaySignal(BaloonFlewAwaySignal signal)
     {
         FlewAwayBaloonsCounter++;
-        if (FlewAwayBaloonsCounter >= 5)
+        if (FlewAwayBaloonsCounter >= BaloonsFlewAwayToLoseGame)
         {
             SignalBus.Fire<SessionEndSignal>();
             SignalBus.Fire<LoseGameSignal>();

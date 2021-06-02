@@ -8,7 +8,6 @@ public class SessionStarter : MonoBehaviour
     [Inject]
     private void Construct(SignalBus signalBus)
     {
-        Debug.LogError("SessionStarter.Construct");
         SignalBus = signalBus;
     }
 

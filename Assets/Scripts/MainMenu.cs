@@ -11,7 +11,6 @@ public class MainMenu : MonoBehaviour
     [Inject]
     public void Construct(IStorage storage)
     {
-        Debug.LogError("Construct");
         Storage = storage;
     }
 
@@ -22,7 +21,6 @@ public class MainMenu : MonoBehaviour
 
     public void EmitBestRecord()
     {
-        Storage.Get<float>("some");
         OnEmitBestRecord.Invoke(Storage.Get<float>("record").ToString());
     }
     
