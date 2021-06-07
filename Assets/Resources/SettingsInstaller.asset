@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SettingsInstaller
   m_EditorClassIdentifier: 
   settings:
-    BaloonStartSpeed: 1
-    BaloonsFlewAwayToLoseGame: 10
+    BaloonStartSpeed: 2
+    BaloonsFlewAwayToLoseGame: 100

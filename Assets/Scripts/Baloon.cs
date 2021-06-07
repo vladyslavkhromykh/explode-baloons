@@ -1,20 +1,59 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
-public class Baloon : MonoBehaviour
+public class Baloon : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
 {
+    private IMemoryPool Pool;
     private SignalBus SignalBus;
+    private Settings Settings;
     private float StartSpeed;
+    public bool Alive;
 
     [Inject]
     public void Construct(SignalBus signalBus, Settings settings)
     {
         SignalBus = signalBus;
-        StartSpeed = settings.BaloonStartSpeed;
+        Settings = settings;
+    }
+
+    public void OnSpawned(IMemoryPool pool)
+    {
+        Pool = pool;
+        MoveToFlyStartPosition();
+        Alive = true;
+    }
+
+    public void OnDespawned()
+    {
+        Pool = null;
+        Reset();
+    }
+
+    public void Dispose()
+    {
+        Pool?.Despawn(this);
+    }
+    
+    private void Reset()
+    {
+        MoveToFlyStartPosition();
+        Alive = false;
+        StartSpeed = Settings.BaloonStartSpeed;
+    }
+    
+    private void Awake()
+    {
+        Reset();
     }
 
     public void Update()
     {
+        if (!Alive)
+        {
+            return;
+        }
+
         Accelerate();
         Fly();
         CheckCameraLimits();
@@ -40,10 +79,10 @@ public class Baloon : MonoBehaviour
     private void CheckCameraLimits()
     {
         Vector3 topLimit = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1.0f, 0.0f));
-        
+
         Vector3 position = transform.position;
         position.y -= GetSize().y * 0.5f;
-        
+
         if (position.y > topLimit.y)
         {
             FlyAway();
@@ -58,12 +97,17 @@ public class Baloon : MonoBehaviour
     private void FlyAway()
     {
         SignalBus.Fire<BaloonFlewAwaySignal>(new BaloonFlewAwaySignal(this));
-        Destroy(gameObject);
+        Dispose();
     }
 
     public void OnMouseDown()
     {
         SignalBus.Fire<BaloonExplodedSignal>(new BaloonExplodedSignal(this));
-        Destroy(gameObject);
+        Dispose();
+    }
+
+    private void MoveToFlyStartPosition()
+    {
+        transform.position = new BaloonSpawnPositionGenerator().Generate(this);
     }
 }

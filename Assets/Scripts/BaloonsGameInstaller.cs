@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
 public class BaloonsGameInstaller : MonoInstaller
 {
@@ -7,17 +6,17 @@ public class BaloonsGameInstaller : MonoInstaller
     {
         Container.BindInterfacesAndSelfTo<Logger>().AsSingle();
 
-        Container.BindFactory<Baloon, BaloonFactory>().FromComponentInNewPrefabResource("BaloonPrefab")
-            .WithGameObjectName("Baloon").UnderTransformGroup("Baloons");
+        Container.BindFactory<Baloon, BaloonFactory>().FromMonoPoolableMemoryPool(baloon =>
+            baloon.WithInitialSize(10).FromComponentInNewPrefabResource("BaloonPrefab").UnderTransformGroup("Baloons"));
 
         Container.BindInterfacesAndSelfTo<BaloonsSpawner>().AsSingle();
 
         Container.BindInterfacesAndSelfTo<LoseConditionChecker>().AsSingle();
         Container.BindInterfacesAndSelfTo<LoseGameProcessor>().AsSingle();
-        
+
         Container.Bind<BestRecordHandler>().AsSingle().NonLazy();
         Container.Bind<SessionStarter>().AsSingle();
-        
+
         Container.DeclareSignal<BaloonExplodedSignal>();
         Container.DeclareSignal<BaloonSpawnedSignal>();
         Container.DeclareSignal<BaloonFlewAwaySignal>();
