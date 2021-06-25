@@ -3,11 +3,11 @@ using Zenject;
 
 public class BaloonsSpawner : ITickable, IInitializable
 {
-    private BaloonFactory Factory;
+    private BalloonFactory Factory;
     private SignalBus SignalBus;
     private float Timer;
 
-    public BaloonsSpawner(BaloonFactory factory, SignalBus signalBus)
+    public BaloonsSpawner(BalloonFactory factory, SignalBus signalBus)
     {
         Factory = factory;
         SignalBus = signalBus;
@@ -31,7 +31,7 @@ public class BaloonsSpawner : ITickable, IInitializable
 
     public void Spawn()
     {
-        Baloon baloon = Factory.Create();
-        SignalBus.Fire<BaloonSpawnedSignal>(new BaloonSpawnedSignal(baloon));
+        Balloon balloon = Factory.Create();
+        SignalBus.Fire<BalloonSpawnedSignal>(new BalloonSpawnedSignal(balloon));
     }
 }

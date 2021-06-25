@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-public class Baloon : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
+public class Balloon : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
 {
     private IMemoryPool Pool;
     private SignalBus SignalBus;
@@ -96,13 +96,13 @@ public class Baloon : MonoBehaviour, IPoolable<IMemoryPool>, IDisposable
 
     private void FlyAway()
     {
-        SignalBus.Fire<BaloonFlewAwaySignal>(new BaloonFlewAwaySignal(this));
+        SignalBus.Fire<BalloonFlewAwaySignal>(new BalloonFlewAwaySignal(this));
         Dispose();
     }
 
     public void OnMouseDown()
     {
-        SignalBus.Fire<BaloonExplodedSignal>(new BaloonExplodedSignal(this));
+        SignalBus.Fire<BalloonExplodedSignal>(new BalloonExplodedSignal(this));
         Dispose();
     }
 

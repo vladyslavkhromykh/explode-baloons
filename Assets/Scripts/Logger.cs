@@ -13,16 +13,16 @@ public class Logger : IInitializable, IDisposable
 
     public void Subscribe()
     {
-        SignalBus.Subscribe<BaloonSpawnedSignal>(OnBaloonSpawnedSignal);
-        SignalBus.Subscribe<BaloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
-        SignalBus.Subscribe<BaloonExplodedSignal>(OnBaloonExplodedSignal);
+        SignalBus.Subscribe<BalloonSpawnedSignal>(OnBaloonSpawnedSignal);
+        SignalBus.Subscribe<BalloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
+        SignalBus.Subscribe<BalloonExplodedSignal>(OnBaloonExplodedSignal);
     }
 
     public void Unsubscribe()
     {
-        SignalBus.Unsubscribe<BaloonSpawnedSignal>(OnBaloonSpawnedSignal);
-        SignalBus.Unsubscribe<BaloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
-        SignalBus.Unsubscribe<BaloonExplodedSignal>(OnBaloonExplodedSignal);
+        SignalBus.Unsubscribe<BalloonSpawnedSignal>(OnBaloonSpawnedSignal);
+        SignalBus.Unsubscribe<BalloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
+        SignalBus.Unsubscribe<BalloonExplodedSignal>(OnBaloonExplodedSignal);
     }
 
     public void Initialize()
@@ -35,18 +35,18 @@ public class Logger : IInitializable, IDisposable
         Unsubscribe();
     }
 
-    private void OnBaloonSpawnedSignal(BaloonSpawnedSignal signal)
+    private void OnBaloonSpawnedSignal(BalloonSpawnedSignal signal)
     {
-        //Debug.Log(nameof(OnBaloonSpawnedSignal));
+        Debug.Log(nameof(OnBaloonSpawnedSignal));
     }
 
-    private void OnBaloonFlewAwaySignal(BaloonFlewAwaySignal signal)
+    private void OnBaloonFlewAwaySignal(BalloonFlewAwaySignal signal)
     {
-        //Debug.Log(nameof(OnBaloonFlewAwaySignal));
+        Debug.Log(nameof(OnBaloonFlewAwaySignal));
     }
 
-    private void OnBaloonExplodedSignal(BaloonExplodedSignal signal)
+    private void OnBaloonExplodedSignal(BalloonExplodedSignal signal)
     {
-        //Debug.Log(nameof(OnBaloonExplodedSignal));
+        Debug.Log(nameof(OnBaloonExplodedSignal));
     }
 }

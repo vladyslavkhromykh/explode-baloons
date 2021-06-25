@@ -15,15 +15,15 @@ public class LoseConditionChecker : IInitializable, IDisposable
     
     public void Initialize()
     {
-        SignalBus.Subscribe<BaloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
+        SignalBus.Subscribe<BalloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
     }
 
     public void Dispose()
     {
-        SignalBus.Unsubscribe<BaloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
+        SignalBus.Unsubscribe<BalloonFlewAwaySignal>(OnBaloonFlewAwaySignal);
     }
     
-    private void OnBaloonFlewAwaySignal(BaloonFlewAwaySignal signal)
+    private void OnBaloonFlewAwaySignal(BalloonFlewAwaySignal signal)
     {
         FlewAwayBaloonsCounter++;
         if (FlewAwayBaloonsCounter >= BaloonsFlewAwayToLoseGame)

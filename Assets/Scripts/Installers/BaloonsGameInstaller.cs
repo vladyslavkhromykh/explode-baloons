@@ -6,8 +6,8 @@ public class BaloonsGameInstaller : MonoInstaller
     {
         Container.BindInterfacesAndSelfTo<Logger>().AsSingle();
 
-        Container.BindFactory<Baloon, BaloonFactory>().FromMonoPoolableMemoryPool(baloon =>
-            baloon.WithInitialSize(10).FromComponentInNewPrefabResource("BaloonPrefab").UnderTransformGroup("Baloons"));
+        Container.BindFactory<Balloon, BalloonFactory>().FromMonoPoolableMemoryPool(baloon =>
+            baloon.WithInitialSize(10).FromComponentInNewPrefabResource("Balloon").UnderTransformGroup("Baloons"));
 
         Container.BindInterfacesAndSelfTo<BaloonsSpawner>().AsSingle();
 
@@ -17,9 +17,9 @@ public class BaloonsGameInstaller : MonoInstaller
         Container.Bind<BestRecordHandler>().AsSingle().NonLazy();
         Container.Bind<SessionStarter>().AsSingle();
 
-        Container.DeclareSignal<BaloonExplodedSignal>();
-        Container.DeclareSignal<BaloonSpawnedSignal>();
-        Container.DeclareSignal<BaloonFlewAwaySignal>();
+        Container.DeclareSignal<BalloonExplodedSignal>();
+        Container.DeclareSignal<BalloonSpawnedSignal>();
+        Container.DeclareSignal<BalloonFlewAwaySignal>();
         Container.DeclareSignal<LoseGameSignal>();
         Container.DeclareSignal<SessionStartSignal>();
         Container.DeclareSignal<SessionEndSignal>();
