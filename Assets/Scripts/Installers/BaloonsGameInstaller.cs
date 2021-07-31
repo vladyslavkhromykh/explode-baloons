@@ -1,27 +1,34 @@
-﻿using Zenject;
+﻿using ExplodeBalloons.Balloon;
+using ExplodeBalloons.Common;
+using ExplodeBalloons.GameSession;
+using ExplodeBalloons.Signals;
+using Zenject;
 
-public class BaloonsGameInstaller : MonoInstaller
+namespace ExplodeBalloons.Installers
 {
-    public override void InstallBindings()
+    public class BaloonsGameInstaller : MonoInstaller
     {
-        Container.BindInterfacesAndSelfTo<Logger>().AsSingle();
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<Logger>().AsSingle();
 
-        Container.BindFactory<BalloonView, BalloonFactory>().FromMonoPoolableMemoryPool(baloon =>
-            baloon.WithInitialSize(10).FromComponentInNewPrefabResource("Balloon").UnderTransformGroup("Baloons"));
+            Container.BindFactory<BalloonView, BalloonFactory>().FromMonoPoolableMemoryPool(baloon =>
+                baloon.WithInitialSize(10).FromComponentInNewPrefabResource("Balloon").UnderTransformGroup("Baloons"));
 
-        Container.BindInterfacesAndSelfTo<BalloonsSpawner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BalloonsSpawner>().AsSingle();
 
-        Container.BindInterfacesAndSelfTo<LoseConditionChecker>().AsSingle();
-        Container.BindInterfacesAndSelfTo<LoseGameProcessor>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoseConditionChecker>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoseGameProcessor>().AsSingle();
 
-        Container.Bind<BestRecordHandler>().AsSingle().NonLazy();
-        Container.Bind<SessionStarter>().AsSingle();
+            Container.Bind<BestRecordHandler>().AsSingle().NonLazy();
+            Container.Bind<SessionStarter>().AsSingle();
 
-        Container.DeclareSignal<BalloonExplodedSignal>();
-        Container.DeclareSignal<BalloonSpawnedSignal>();
-        Container.DeclareSignal<BalloonFlewAwaySignal>();
-        Container.DeclareSignal<LoseGameSignal>();
-        Container.DeclareSignal<SessionStartSignal>();
-        Container.DeclareSignal<SessionEndSignal>();
+            Container.DeclareSignal<BalloonExplodedSignal>();
+            Container.DeclareSignal<BalloonSpawnedSignal>();
+            Container.DeclareSignal<BalloonFlewAwaySignal>();
+            Container.DeclareSignal<LoseGameSignal>();
+            Container.DeclareSignal<SessionStartSignal>();
+            Container.DeclareSignal<SessionEndSignal>();
+        }
     }
 }

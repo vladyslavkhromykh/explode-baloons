@@ -1,4 +1,7 @@
-public class SessionStartSignal
+namespace ExplodeBalloons.Signals
 {
-        
+    public class SessionStartSignal
+    {
+
+    }
 }

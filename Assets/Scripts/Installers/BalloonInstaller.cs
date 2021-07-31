@@ -1,14 +1,18 @@
+using ExplodeBalloons.Balloon;
 using Zenject;
 
-public class BalloonInstaller : MonoInstaller
+namespace ExplodeBalloons.Installers
 {
-    public BalloonView BalloonView;
-    
-    public override void InstallBindings()
+    public class BalloonInstaller : MonoInstaller
     {
-        Container.Bind<BalloonModel>().AsSingle();
-        Container.BindInterfacesTo<BalloonFlyBehaviour>().AsSingle().WithArguments(BalloonView).NonLazy();
-        Container.BindInterfacesTo<BalloonCameraLimitsChecker>().AsSingle().WithArguments(BalloonView).NonLazy();
-        //Container.BindInterfacesTo<BalloonAccelerator>().AsSingle().NonLazy();
+        public BalloonView BalloonView;
+
+        public override void InstallBindings()
+        {
+            Container.Bind<BalloonModel>().AsSingle();
+            Container.BindInterfacesTo<BalloonFlyBehaviour>().AsSingle().WithArguments(BalloonView).NonLazy();
+            Container.BindInterfacesTo<BalloonCameraLimitsChecker>().AsSingle().WithArguments(BalloonView).NonLazy();
+            //Container.BindInterfacesTo<BalloonAccelerator>().AsSingle().NonLazy();
+        }
     }
 }

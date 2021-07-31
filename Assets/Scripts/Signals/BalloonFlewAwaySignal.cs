@@ -1,6 +1,9 @@
-public class BalloonFlewAwaySignal
+namespace ExplodeBalloons.Signals
 {
-    public BalloonFlewAwaySignal()
+    public class BalloonFlewAwaySignal
     {
+        public BalloonFlewAwaySignal()
+        {
+        }
     }
 }

@@ -1,9 +1,14 @@
-﻿public class BalloonExplodedSignal
+﻿using ExplodeBalloons.Balloon;
+
+namespace ExplodeBalloons.Signals
 {
-    public BalloonModel BalloonModel;
-    
-    public BalloonExplodedSignal(BalloonModel balloonModel)
+    public class BalloonExplodedSignal
     {
-        BalloonModel = balloonModel;
+        public BalloonModel BalloonModel;
+
+        public BalloonExplodedSignal(BalloonModel balloonModel)
+        {
+            BalloonModel = balloonModel;
+        }
     }
 }

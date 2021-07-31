@@ -1,4 +1,7 @@
-public class BalloonSpawnedSignal
+namespace ExplodeBalloons.Signals
 {
-    
+    public class BalloonSpawnedSignal
+    {
+
+    }
 }

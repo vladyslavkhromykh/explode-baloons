@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+﻿using ExplodeBalloons.Storage;
 using Zenject;
 
-public class BalloonsProjectInstaller : MonoInstaller
+namespace ExplodeBalloons.Installers
 {
-    public override void InstallBindings()
+    public class BalloonsProjectInstaller : MonoInstaller
     {
-        SignalBusInstaller.Install(Container);
-        
-        Container.Bind<IStorage>().To<DiskStorage>().AsSingle();
+        public override void InstallBindings()
+        {
+            SignalBusInstaller.Install(Container);
+
+            Container.Bind<IStorage>().To<DiskStorage>().AsSingle();
+        }
     }
 }

@@ -1,3 +1,6 @@
-public class LoseGameSignal
+namespace ExplodeBalloons.Signals
 {
+    public class LoseGameSignal
+    {
+    }
 }
