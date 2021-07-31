@@ -1,13 +1,13 @@
 using UnityEngine;
 using Zenject;
 
-public class BaloonsSpawner : ITickable, IInitializable
+public class BalloonsSpawner : ITickable, IInitializable
 {
     private BalloonFactory Factory;
     private SignalBus SignalBus;
     private float Timer;
 
-    public BaloonsSpawner(BalloonFactory factory, SignalBus signalBus)
+    public BalloonsSpawner(BalloonFactory factory, SignalBus signalBus)
     {
         Factory = factory;
         SignalBus = signalBus;
@@ -22,7 +22,7 @@ public class BaloonsSpawner : ITickable, IInitializable
     {
         Timer += Time.deltaTime;
 
-        if (Timer >= 0.2f)
+        if (Timer >= 1.0f)
         {
             Timer = 0.0f;
             Spawn();
@@ -31,7 +31,7 @@ public class BaloonsSpawner : ITickable, IInitializable
 
     public void Spawn()
     {
-        Balloon balloon = Factory.Create();
-        SignalBus.Fire<BalloonSpawnedSignal>(new BalloonSpawnedSignal(balloon));
+        BalloonView balloonView = Factory.Create();
+        SignalBus.Fire<BalloonSpawnedSignal>(new BalloonSpawnedSignal());
     }
 }

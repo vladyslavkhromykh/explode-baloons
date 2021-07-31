@@ -1,9 +1,9 @@
 ﻿public class BalloonExplodedSignal
 {
-    public Balloon Balloon;
+    public BalloonModel BalloonModel;
     
-    public BalloonExplodedSignal(Balloon balloon)
+    public BalloonExplodedSignal(BalloonModel balloonModel)
     {
-        Balloon = balloon;
+        BalloonModel = balloonModel;
     }
 }

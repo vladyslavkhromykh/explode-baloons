@@ -1,9 +1,6 @@
 public class BalloonFlewAwaySignal
 {
-    public Balloon Balloon;
-    
-    public BalloonFlewAwaySignal(Balloon balloon)
+    public BalloonFlewAwaySignal()
     {
-        Balloon = balloon;
     }
 }

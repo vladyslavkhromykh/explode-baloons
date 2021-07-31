@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2619d635be6104d0a98ae5b85d42a555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alive: 0
 --- !u!65 &8659228233259936479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,3 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480b5e6efde4c481aa2892f242241d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BalloonView: {fileID: 485243884764006802}

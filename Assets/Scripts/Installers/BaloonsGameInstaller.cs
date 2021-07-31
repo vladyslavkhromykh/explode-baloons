@@ -6,10 +6,10 @@ public class BaloonsGameInstaller : MonoInstaller
     {
         Container.BindInterfacesAndSelfTo<Logger>().AsSingle();
 
-        Container.BindFactory<Balloon, BalloonFactory>().FromMonoPoolableMemoryPool(baloon =>
+        Container.BindFactory<BalloonView, BalloonFactory>().FromMonoPoolableMemoryPool(baloon =>
             baloon.WithInitialSize(10).FromComponentInNewPrefabResource("Balloon").UnderTransformGroup("Baloons"));
 
-        Container.BindInterfacesAndSelfTo<BaloonsSpawner>().AsSingle();
+        Container.BindInterfacesAndSelfTo<BalloonsSpawner>().AsSingle();
 
         Container.BindInterfacesAndSelfTo<LoseConditionChecker>().AsSingle();
         Container.BindInterfacesAndSelfTo<LoseGameProcessor>().AsSingle();

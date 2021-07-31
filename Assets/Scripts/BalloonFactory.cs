@@ -1,5 +1,5 @@
 using Zenject;
 
-public class BalloonFactory : PlaceholderFactory<Balloon>
+public class BalloonFactory : PlaceholderFactory<BalloonView>
 {
 }
