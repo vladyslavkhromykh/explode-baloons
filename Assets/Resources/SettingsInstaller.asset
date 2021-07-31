@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     BaloonStartSpeed: 2
-    BaloonsFlewAwayToLoseGame: 100
+    BaloonsFlewAwayToLoseGame: 10
