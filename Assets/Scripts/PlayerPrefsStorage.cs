@@ -8,14 +8,14 @@ public class PlayerPrefsStorage : IStorage
         PlayerPrefs.SetString(key, JsonConvert.SerializeObject(model));
     }
 
-    public TValue Get<TValue>(string key)
+    public TModel Get<TModel>(string key)
     {
         string json = PlayerPrefs.GetString(key);
         if (string.IsNullOrWhiteSpace(json))
         {
-            return default(TValue);
+            return default(TModel);
         }
-        
-        return JsonConvert.DeserializeObject<TValue>(json);
+
+        return JsonConvert.DeserializeObject<TModel>(json);
     }
 }

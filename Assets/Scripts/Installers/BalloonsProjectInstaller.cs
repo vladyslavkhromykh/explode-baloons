@@ -7,6 +7,6 @@ public class BalloonsProjectInstaller : MonoInstaller
     {
         SignalBusInstaller.Install(Container);
         
-        Container.Bind<IStorage>().To<PlayerPrefsStorage>().AsSingle();
+        Container.Bind<IStorage>().To<DiskStorage>().AsSingle();
     }
 }
